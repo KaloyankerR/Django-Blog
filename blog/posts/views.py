@@ -2,10 +2,14 @@ from django.shortcuts import render
 from .models import Posts
 
 # Create your views here.
-def index(request):
+def home(request):
     posts = Posts.objects.all()
-    return render(request, 'index.html', {'posts': posts})
+    return render(request, 'home.html', {'posts': posts})
+
+def posts(request):
+    posts = Posts.objects.all()
+    return render(request, 'posts.html', {'posts': posts})
 
 def post(request, pk):
     posts = Posts.objects.get(id=pk)
-    return render(request, 'posts.html', {'post': posts})
+    return render(request, 'post.html', {'post': posts})

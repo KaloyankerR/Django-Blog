@@ -59,17 +59,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand fs-3" href="#">Kalo's blog</a>
+        <a class="navbar-brand fs-3">Kalo's blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link active fs-5" aria-current="page" href="#">Home</a>
-            <a class="nav-link fs-5" href="#">Posts</a>
+            <a class="nav-link fs-5" href="posts">Posts</a>
           </div>          
         </div>
-        <a class="nav-link fs-5" href="#" tabindex="-1">Admin</a>
+        <a class="nav-link fs-5" href="admin" tabindex="-1">Admin</a>
       </div>
     </nav>
 
@@ -79,23 +79,25 @@
       </blockquote>
     </div>
 
-
+    <h3 class="mt-4">Last 5 posts: </h3>
+    <!-- Displaying the posts -->
     <div class="row">
-      
-
       <div class="leftcolumn">
         {% for post in posts reversed %}
-        <div class="card">
-            <a style="text-decoration: none; color: black;" href="/post/{{ post.id }}">
-                <h2>{{ post.title }}</h2>
-                <h5>{{ post.created_at }}</h5>
-                <p>{{ post.body|truncatewords:5 }}</p>
-            </a>
-          
-        </div>
+          {% if forloop.counter <= 5 %}
+            <div class="card">
+                <a style="text-decoration: none; color: black;" href="/post/{{ post.id }}">
+                    <h2>{{ post.title }}</h2>
+                    <h5>{{ post.created_at }}</h5>
+                    <p>{{ post.body|truncatewords:5 }}</p>
+                </a> 
+            </div>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
+
+
 
   </body>
 </html>

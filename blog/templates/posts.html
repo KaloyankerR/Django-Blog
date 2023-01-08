@@ -48,22 +48,51 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Post</title>
+    <title>Django Blog</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
-    <div class="header">
-      <h2>Kalo's Blog</h2>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-3">Kalo's blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link fs-5" href="/">Home</a>
+            <a class="nav-link active fs-5" aria-current="page" href="#">Posts</a>
+          </div>          
+        </div>
+        <a class="nav-link fs-5" href="admin" tabindex="-1">Admin</a>
+      </div>
+    </nav>
+
+    <div class="card">
+      <blockquote class="blockquote">
+        <p>All posts.</p>
+      </blockquote>
     </div>
 
+    <!-- Displaying the posts -->
     <div class="row">
       <div class="leftcolumn">
-        <div class="card">
-          <h1>{{ post.title }}</h1>
-          <h5>{{ post.created_at }}</h5>
-          <p>{{ post.body }}</p>
-        </div>
+        {% for post in posts reversed %}
+            <div class="card">
+                <a style="text-decoration: none; color: black;" href="/post/{{ post.id }}">
+                    <h2>{{ post.title }}</h2>
+                    <h5>{{ post.created_at }}</h5>
+                    <p>{{ post.body|truncatewords:5 }}</p>
+                </a> 
+            </div>
+        {% endfor %}
       </div>
     </div>
+
   </body>
 </html>
