@@ -1,57 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+{% extends "base.html" %}
 
-    body {
-      font-family: Arial;
-      padding: 20px;
-      background: #f1f1f1;
-    }
+{% block title %}{{ post.title }}{% endblock %}
 
-    .header {
-      padding: 2px;
-      font-size: 40px;
-      text-align: center;
-      background: white;
-    }
-
-    .leftcolumn {
-      float: left;
-      width: 100%;
-    }
-
-    .card {
-      background-color: white;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    @media screen and (max-width: 800px) {
-      .leftcolumn,
-      .rightcolumn {
-        width: 100%;
-        padding: 0;
-      }
-    }
-  </style>
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Post</title>
-  </head>
-
-  <body>
+{% block content %}
     <div class="header">
       <h2>Kalo's Blog</h2>
     </div>
@@ -65,5 +16,4 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
+{% endblock %}
