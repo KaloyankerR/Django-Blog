@@ -10,8 +10,19 @@ def home(request):
 
 
 def posts(request):
+    query = request.GET.get('q')
+    sort_option = request.GET.get('sort')
     posts = Post.objects.all()
-    return render(request, 'posts.html', {'posts': posts})
+
+    if query:
+        posts = posts.filter(title__icontains=query)
+
+    if sort_option == '':
+        posts = posts.order_by('created_at')
+    elif sort_option == 'title':
+        posts = posts.order_by('title')
+
+    return render(request, 'posts.html', {'query': query, 'sort_option': sort_option, 'posts': posts})
 
 
 def post(request, pk):
