@@ -1,15 +1,19 @@
 from django.shortcuts import render
-from .models import Posts
+from .utils import get_random_quote
+from .models import Post
 
-# Create your views here.
+
 def home(request):
-    posts = Posts.objects.all()
-    return render(request, 'home.html', {'posts': posts})
+    posts = Post.objects.all()
+    random_quote = get_random_quote()
+    return render(request, 'home.html', {'random_quote': random_quote, 'posts': posts})
+
 
 def posts(request):
-    posts = Posts.objects.all()
+    posts = Post.objects.all()
     return render(request, 'posts.html', {'posts': posts})
 
+
 def post(request, pk):
-    posts = Posts.objects.get(id=pk)
+    posts = Post.objects.get(id=pk)
     return render(request, 'post.html', {'post': posts})
